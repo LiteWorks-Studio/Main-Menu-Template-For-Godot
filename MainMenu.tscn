@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://buildings"]
+
+[ext_resource type="Theme" uid="uid://4ntl84ibe3iv" path="res://MainMenu/theme.tres" id="1_cruaa"]
+[ext_resource type="Script" uid="uid://r52vl7jcgsup" path="res://MainMenu/main_menu.gd" id="2_b76km"]
+
+[sub_resource type="Gradient" id="Gradient_BG"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.529412, 0.807843, 0.921569, 1, 0.678431, 0.847059, 0.901961, 1, 0.956863, 0.643137, 0.376471, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_BG"]
+gradient = SubResource("Gradient_BG")
+width = 2048
+height = 1152
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TitleBg"]
+bg_color = Color(0.2, 0.411765, 0.117647, 0.7)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.1, 0.2, 0.05, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 8
+shadow_offset = Vector2(4, 4)
+
+[node name="MainMenu" type="Control" unique_id=313564689]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cruaa")
+script = ExtResource("2_b76km")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1057795862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_BG")
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=64430954]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="VBoxContainer" parent="CenterContainer" unique_id=1726977729]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitlePanel" type="PanelContainer" parent="CenterContainer/MenuPanel" unique_id=1345039474]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_TitleBg")
+
+[node name="TitleMargin" type="MarginContainer" parent="CenterContainer/MenuPanel/TitlePanel" unique_id=1129079760]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="Title" type="Label" parent="CenterContainer/MenuPanel/TitlePanel/TitleMargin" unique_id=357507092]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "My Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/MenuPanel" unique_id=1227906623]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.411765, 0.117647, 0.8)
+theme_override_font_sizes/font_size = 20
+text = "A Fun Adventure Awaits!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/MenuPanel" unique_id=181681194]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MenuPanel" unique_id=1826912111]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuPanel" unique_id=884501915]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/MenuPanel" unique_id=1354132883]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuPanel" unique_id=2032245437]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/MenuPanel" unique_id=419828594]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/MenuPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuPanel/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuPanel/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuPanel/QuitButton" to="." method="_on_quit_button_pressed"]
